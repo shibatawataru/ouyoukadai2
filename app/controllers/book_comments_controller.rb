@@ -8,7 +8,9 @@ class BookCommentsController < ApplicationController
   end
 
   def destroy
-    BookComment.find(params[:id])
+    @book = Book.find(params[:book_id])
+    @comment = BookComment.find_by(id: params[:id],book_id: params[:book_id] )
+    @comment.destroy
     redirect_to request.referer
   end
 
